@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getItem, setItem } from "./utils/localStorage";
 function ToDoList() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const items = getItem("tasks");
+    return Array.isArray(items) ? items : [];
+  });
   const [newTask, setNewTask] = useState("");
+
+  useEffect(() => {
+    setItem("tasks", tasks);
+  }, [tasks]);
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
@@ -10,7 +18,7 @@ function ToDoList() {
   function addTask(e) {
     e.preventDefault();
     if (newTask.trim() !== "") {
-      setTasks((tasks) => [...tasks, newTask]);
+      setTasks((tasks) => [...tasks, newTask.trim()]);
       setNewTask("");
     }
   }
