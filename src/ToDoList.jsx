@@ -7,7 +7,8 @@ function ToDoList() {
     setNewTask(event.target.value);
   }
 
-  function addTask() {
+  function addTask(e) {
+    e.preventDefault();
     if (newTask.trim() !== "") {
       setTasks((tasks) => [...tasks, newTask]);
       setNewTask("");
@@ -45,15 +46,17 @@ function ToDoList() {
     <div className="to-do-list">
       <h1>To-Do List</h1>
       <div>
-        <input
-          type="text"
-          placeholder="Enter a task"
-          value={newTask}
-          onChange={handleInputChange}
-        ></input>
-        <button className="add-button" onClick={addTask}>
-          Add Task
-        </button>
+        <form onSubmit={addTask}>
+          <input
+            type="text"
+            placeholder="Enter a task"
+            value={newTask}
+            onChange={handleInputChange}
+          ></input>
+          <button className="add-button" type="submit">
+            Add Task
+          </button>
+        </form>
       </div>
       <ol>
         {tasks.map((task, index) => (
