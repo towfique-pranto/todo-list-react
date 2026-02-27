@@ -7,7 +7,12 @@ function ToDoList() {
     setNewTask(event.target.value);
   }
 
-  function addTask() {}
+  function addTask() {
+    if (newTask.trim() !== "") {
+      setTasks((tasks) => [...tasks, newTask]);
+      setNewTask("");
+    }
+  }
 
   function deleteTask(index) {}
 
@@ -26,7 +31,7 @@ function ToDoList() {
           onChange={handleInputChange}
         ></input>
         <button className="add-button" onClick={addTask}>
-          Add
+          Add Task
         </button>
       </div>
       <ol>
