@@ -1,16 +1,78 @@
-# React + Vite
+# Todo List React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and clean Todo List app built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add tasks
+- Delete tasks
+- Move tasks up and down
+- Persist tasks with `localStorage`
+- Input trimming to avoid empty/whitespace-only tasks
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite 7
+- JavaScript (ES Modules)
+- CSS
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js 18+ (recommended)
+- npm
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Then open the local URL shown in your terminal (usually `http://localhost:5173`).
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Create production build
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```text
+src/
+  App.jsx
+  ToDoList.jsx
+  App.css
+  index.css
+  main.jsx
+  utils/
+    localStorage.js
+```
+
+## localStorage Notes
+
+Tasks are saved under the key `tasks`.
+
+- On app load, data is read from `localStorage`
+- Data is validated with `Array.isArray(...)` before use
+- On each tasks update, the latest list is written back to `localStorage`
+
+## Future Improvements
+
+- Use object-based tasks (`{ id, text }`) for stable keys
+- Add edit task support
+- Add completed state and filters (All/Active/Completed)
+- Add unit/component tests
+
+## License
+
+This project is for learning and personal use.
